@@ -10,7 +10,9 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
-    "svelte": "^3.44.0"
+    "svelte": "^3.44.0",
+    "sass": "^1.46.0",
+    "svelte-preprocess": "^4.10.1"
   },
   "type": "module"
 }
