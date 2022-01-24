@@ -1,1 +1,80 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,300&display=swap');
+
+body {
+  background-color: #181818;
+  color: #fff;
+  font-family: Nunito;
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  margin: auto;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #272727;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  height: 700px;
+
+  .chat-window {
+    padding: 0 20px;
+    overflow: auto;
+  }
+}
+
+.chat-box {
+  .user-profile-image {
+    width: 70px;
+
+    img {
+      border-radius: 100px;
+    }
+  }
+
+  .message {
+    width: 100%;
+    text-align: left;
+
+    .message-box {
+      padding: 20px;
+      font-weight: 100;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.agent {
+  display: flex;
+
+  .user-profile-image {
+    margin-right: 15px;
+  }
+
+  .message-box {
+    color: #181818;
+    background: #fff;
+    border-radius: 0 20px 20px 20px;
+  }
+}
+
+.sender {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .user-profile-image {
+    margin-left: 15px;
+  }
+
+  .message-box {
+    color: #fff;
+    background: #3ecf8e;
+
+    border-radius: 20px 0px 20px 20px;
+  }
+}

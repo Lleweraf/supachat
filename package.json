@@ -1,5 +1,5 @@
 {
-  "name": "supachat",
+  "name": "test",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -14,5 +14,8 @@
     "sass": "^1.46.0",
     "svelte-preprocess": "^4.10.1"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^1.29.4"
+  }
 }
