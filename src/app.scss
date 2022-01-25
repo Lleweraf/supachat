@@ -13,14 +13,33 @@ main {
   margin: auto;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #202020;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  padding: 10px;
+  text-align: right;
+  font-weight: 100;
+
+  span {
+    font-weight: 600;
+  }
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   background-color: #272727;
-  border-radius: 5px 5px 0 5px;
+  border-radius: 5px 5px 0 0;
   overflow: hidden;
-  height: 650px;
+  height: 525px;
 
   .chat-window {
     padding: 20px 20px 20px 30px;
@@ -46,13 +65,18 @@ main {
     text-align: justify;
 
     .message-box {
-      padding: 20px;
+      padding: 10px 15px;
       font-weight: 100;
     }
 
     .info {
       margin: 10px 0;
       color: #707070;
+
+      .username {
+        font-weight: 600;
+        color: #3ecf8e;
+      }
     }
   }
 }
@@ -91,5 +115,24 @@ main {
     color: #fff;
     background: #3ecf8e;
     border-radius: 30px 30px 5px 30px;
+  }
+}
+
+.add-username {
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;
+  margin: auto;
+
+  input {
+    border: none;
+    padding: 20px 40px;
+    width: 100%;
+    border-radius: 50px;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

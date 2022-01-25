@@ -1,9 +1,15 @@
 <script>
-  import { sendMessage } from '../stores/chatStore.js'
-  let message
-  let username = 'Ralph'
+  import { sendMessage, loadUserdata } from '../stores/chatStore.js'
+  import { onMount } from 'svelte'
 
-  const handleSubmit = async () => {
+  let userData = []
+  let message
+
+  onMount(async () => {
+    userData = await loadUserdata()
+  })
+
+  const handleSubmit = async (username) => {
     const isSent = await sendMessage(username, message)
     if (isSent) {
       message = ''
@@ -12,7 +18,7 @@
 </script>
 
 <div class="input-container">
-  <form on:submit|preventDefault={handleSubmit}>
+  <form on:submit|preventDefault={handleSubmit(userData.tempUser)}>
     <input type="text" placeholder="Say something.." bind:value={message} />
   </form>
 </div>
