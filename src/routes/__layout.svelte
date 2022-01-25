@@ -7,19 +7,20 @@
   let userData = []
 
   onMount(async () => {
-    loadChat()
     userData = await loadUserdata()
   })
 </script>
 
-<header>
-  <div class="logo">
-    <h1>supachat</h1>
-  </div>
+{#if userData.tempUser}
+  <header>
+    <div class="logo">
+      <h1>supachat</h1>
+    </div>
 
-  <div class="user-info">
-    Hello, <span>{userData.tempUser}</span>
-  </div>
-</header>
+    <div class="user-info">
+      Hello, <span>{userData.tempUser}</span>
+    </div>
+  </header>
+{/if}
 
 <slot />

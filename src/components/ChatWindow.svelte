@@ -8,7 +8,6 @@
   let autoscroll
 
   onMount(async () => {
-    loadChat()
     userData = await loadUserdata()
   })
 

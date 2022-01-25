@@ -1,6 +1,9 @@
-import { readable, writable } from 'svelte/store'
+import { writable, readable, get } from 'svelte/store'
 import { supabase } from '../supabase.js'
 export const chat = writable([])
+export const userName = readable(null, (set) => {
+  set(localStorage.getItem('supachatUsername'))
+})
 
 let isAdded = false
 
@@ -58,6 +61,7 @@ export const loadUserdata = async () => {
   let tempUser = localStorage.getItem('supachatUsername')
   let tempDate = localStorage.getItem('supachatTimestamp')
 
+  computeDate(tempDate)
   return { tempUser, tempDate }
 }
 
@@ -69,6 +73,7 @@ export const computeDate = (tempDate) => {
   let lapsedTime = diff / 3600000
 
   if (lapsedTime > 24) {
+    localStorage.clear()
     return true
   } else {
     return false

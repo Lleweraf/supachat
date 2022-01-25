@@ -121,15 +121,16 @@ header {
 .add-username {
   padding: 20px;
   border-radius: 10px;
-  width: 70%;
   margin: auto;
 
   input {
     border: none;
     padding: 20px 40px;
-    width: 100%;
     border-radius: 50px;
     text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
 
     &:focus {
       outline: none;

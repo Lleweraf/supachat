@@ -2,23 +2,26 @@
   import ChatWindow from '../components/ChatWindow.svelte'
   import ChatInput from '../components/ChatInput.svelte'
   import AddUsername from '../components/AddUsername.svelte'
+  import Modal from '../components/Modal.svelte'
 
   import { onMount } from 'svelte'
-  import { loadUserdata, loadChat } from '../stores/chatStore.js'
-
-  let userData = []
+  import { get } from 'svelte/store'
+  import { loadChat, userName } from '../stores/chatStore.js'
 
   onMount(async () => {
     loadChat()
-    userData = await loadUserdata()
   })
 </script>
 
 <main>
-  {#if userData.tempUser}
+  {#if get(userName)}
     <ChatWindow />
     <ChatInput />
-  {:else}
-    <AddUsername />
+  {/if}
+
+  {#if !get(userName)}
+    <Modal>
+      <AddUsername />
+    </Modal>
   {/if}
 </main>
