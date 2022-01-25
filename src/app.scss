@@ -18,12 +18,12 @@ main {
   flex-direction: column;
   justify-content: flex-end;
   background-color: #272727;
-  padding: 10px;
-  border-radius: 5px 5px 0 0;
-  height: 700px;
+  border-radius: 5px 5px 0 5px;
+  overflow: hidden;
+  height: 650px;
 
   .chat-window {
-    padding: 0 20px;
+    padding: 20px 20px 20px 30px;
     overflow: auto;
   }
 }
@@ -31,6 +31,8 @@ main {
 .chat-box {
   .user-profile-image {
     width: 70px;
+    align-self: flex-end;
+    margin-bottom: 40px;
 
     img {
       border-radius: 100px;
@@ -38,13 +40,19 @@ main {
   }
 
   .message {
+    display: flex;
+    flex-flow: column;
     width: 100%;
-    text-align: left;
+    text-align: justify;
 
     .message-box {
       padding: 20px;
       font-weight: 100;
-      margin-bottom: 20px;
+    }
+
+    .info {
+      margin: 10px 0;
+      color: #707070;
     }
   }
 }
@@ -56,10 +64,14 @@ main {
     margin-right: 15px;
   }
 
+  .message {
+    align-items: flex-start;
+  }
+
   .message-box {
     color: #181818;
     background: #fff;
-    border-radius: 0 20px 20px 20px;
+    border-radius: 30px 30px 30px 5px;
   }
 }
 
@@ -71,10 +83,13 @@ main {
     margin-left: 15px;
   }
 
+  .message {
+    align-items: flex-end;
+  }
+
   .message-box {
     color: #fff;
     background: #3ecf8e;
-
-    border-radius: 20px 0px 20px 20px;
+    border-radius: 30px 30px 5px 30px;
   }
 }

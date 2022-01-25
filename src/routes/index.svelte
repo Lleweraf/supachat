@@ -8,3 +8,9 @@
   <ChatWindow />
   <ChatInput />
 </main>
+
+<style>
+  h1 {
+    margin: 20px 0;
+  }
+</style>

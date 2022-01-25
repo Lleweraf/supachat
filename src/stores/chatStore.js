@@ -5,8 +5,8 @@ export const chat = writable([])
 let isAdded = false
 
 export const loadChat = async () => {
-  //load all chat first
-  const { data, error } = await supabase.from('global_chat').select()
+  //loads 50 most recent chat
+  const { data, error } = await supabase.from('global_chat').select().limit(50)
   chat.set(data)
 
   //subscribe for changes
@@ -15,6 +15,7 @@ export const loadChat = async () => {
     .on('*', (payload) => {
       console.log('Change received!', payload)
       chat.set([...data, payload.new])
+      loadChat()
     })
     .subscribe()
 }

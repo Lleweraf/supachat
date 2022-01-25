@@ -76,7 +76,7 @@ h6 {
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
 
