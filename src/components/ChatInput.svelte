@@ -5,9 +5,12 @@
   let uname = get(userName)
 
   const handleSubmit = async () => {
-    const isSent = await sendMessage(uname, message)
-    if (isSent) {
-      message = ''
+    let trimmed = message.trim()
+    if (trimmed !== '' && trimmed != null) {
+      const isSent = await sendMessage(uname, trimmed)
+      if (isSent) {
+        message = ''
+      }
     }
   }
 </script>

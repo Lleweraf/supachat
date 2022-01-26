@@ -6,10 +6,15 @@ export const userName = readable(null, (set) => {
 })
 
 let isAdded = false
+let initChatCount = 50
 
 export const loadChat = async () => {
   //loads 50 most recent chat
-  const { data, error } = await supabase.from('global_chat').select().order('id', { ascending: true }).limit(50)
+  const { data, error } = await supabase
+    .from('global_chat')
+    .select()
+    .order('id', { ascending: false })
+    .limit(initChatCount)
   chat.set(data)
 
   //subscribe for changes
@@ -21,6 +26,16 @@ export const loadChat = async () => {
       loadChat()
     })
     .subscribe()
+}
+
+export const loadMore = async () => {
+  //console.log((initChatCount += 1))
+  const { data, error } = await supabase
+    .from('global_chat')
+    .select()
+    .order('id', { ascending: false })
+    .limit((initChatCount += 20))
+  chat.set(data)
 }
 
 export const sendMessage = async (username, message) => {

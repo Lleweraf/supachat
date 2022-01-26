@@ -44,20 +44,12 @@ header {
   .chat-window {
     padding: 20px 20px 20px 30px;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 
 .chat-box {
-  .user-profile-image {
-    width: 70px;
-    align-self: flex-end;
-    margin-bottom: 40px;
-
-    img {
-      border-radius: 100px;
-    }
-  }
-
   .message {
     display: flex;
     flex-flow: column;
@@ -84,10 +76,6 @@ header {
 .agent {
   display: flex;
 
-  .user-profile-image {
-    margin-right: 15px;
-  }
-
   .message {
     align-items: flex-start;
   }
@@ -102,10 +90,6 @@ header {
 .sender {
   display: flex;
   flex-direction: row-reverse;
-
-  .user-profile-image {
-    margin-left: 15px;
-  }
 
   .message {
     align-items: flex-end;
