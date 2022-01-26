@@ -1,15 +1,12 @@
 <script>
-  import { onMount, beforeUpdate, afterUpdate } from 'svelte'
-  import { loadChat, loadUserdata, chat } from '../stores/chatStore.js'
+  import { beforeUpdate, afterUpdate } from 'svelte'
+  import { chat, userName } from '../stores/chatStore.js'
   import Time from 'svelte-time'
+  import { get } from 'svelte/store'
 
-  let userData = []
   let div
   let autoscroll
-
-  onMount(async () => {
-    userData = await loadUserdata()
-  })
+  let uname = get(userName)
 
   beforeUpdate(() => {
     autoscroll = div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20
@@ -24,11 +21,7 @@
   <div class="chat-window" bind:this={div}>
     <div>
       {#each $chat as { id, created_at, username, message }}
-        <div
-          class="chat-box"
-          class:sender={username === userData.tempUser}
-          class:agent={username !== userData.tempUser}
-        >
+        <div class="chat-box" class:sender={username === uname} class:agent={username !== uname}>
           <!-- if not sender, show profile image -->
           <!-- {#if username !== userData.tempUser}
             <div class="user-profile-image">
@@ -42,7 +35,7 @@
             <div class="info">
               <small>
                 <!-- if not sender, show username -->
-                {#if username !== userData.tempUser}
+                {#if username !== uname}
                   <span class="username">
                     {username}
                   </span>

@@ -9,7 +9,7 @@ let isAdded = false
 
 export const loadChat = async () => {
   //loads 50 most recent chat
-  const { data, error } = await supabase.from('global_chat').select().limit(50)
+  const { data, error } = await supabase.from('global_chat').select().order('id', { ascending: true }).limit(50)
   chat.set(data)
 
   //subscribe for changes

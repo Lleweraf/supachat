@@ -117,23 +117,3 @@ header {
     border-radius: 30px 30px 5px 30px;
   }
 }
-
-.add-username {
-  padding: 20px;
-  border-radius: 10px;
-  margin: auto;
-
-  input {
-    border: none;
-    padding: 20px 40px;
-    border-radius: 50px;
-    text-align: center;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
