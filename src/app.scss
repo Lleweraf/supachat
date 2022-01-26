@@ -150,13 +150,18 @@ footer {
   }
 }
 
+@media (max-width: 768px) {
+  main {
+    width: 100%;
+  }
+}
+
 @media (max-width: 425px) {
   main {
     margin: 0;
     flex: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
 
   .chat-container {
