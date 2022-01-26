@@ -17,6 +17,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@krowten/svelte-heroicons": "0.0.3",
     "@supabase/supabase-js": "^1.29.4",
     "vercel": "^23.1.2"
   }

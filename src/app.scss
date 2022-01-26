@@ -22,20 +22,60 @@ main {
 
 header,
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: #202020;
   padding: 10px 20px;
 }
 
-.user-info {
-  padding: 10px;
-  text-align: right;
-  font-weight: 100;
+header {
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+  }
 
-  span {
-    font-weight: 600;
+  svg {
+    width: 30px;
+    color: #3ecf8e;
+  }
+
+  .logo {
+    display: flex;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-weight: 100;
+
+    svg {
+      margin-left: 5px;
+    }
+    span {
+      font-weight: 600;
+    }
+  }
+}
+
+footer {
+  svg {
+    width: 15px;
+    color: #3ecf8e;
+    margin-right: 5px;
+  }
+
+  .source-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    color: #3ecf8e;
+    font-weight: bold;
+    text-decoration: none;
   }
 }
 
@@ -114,9 +154,12 @@ footer {
   main {
     margin: 0;
     flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .chat-container {
     border-radius: 0;
+    height: 79vh;
   }
 }
