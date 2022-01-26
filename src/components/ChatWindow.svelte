@@ -1,12 +1,13 @@
 <script>
   import { beforeUpdate, afterUpdate } from 'svelte'
-  import { chat, userName, loadMore } from '../stores/chatStore.js'
+  import { chat, loadMore } from '../stores/chatStore.js'
+  import { atot } from '../stores/userStore.js'
   import Time from 'svelte-time'
   import { get } from 'svelte/store'
 
   let div
   let autoscroll
-  let uname = get(userName)
+  let uname = get(atot)
 
   beforeUpdate(() => {
     autoscroll = div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20

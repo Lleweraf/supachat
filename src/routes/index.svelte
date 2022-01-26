@@ -5,13 +5,14 @@
 
   import { onMount } from 'svelte'
   import { get } from 'svelte/store'
-  import { loadChat, userName } from '../stores/chatStore.js'
+  import { loadChat } from '../stores/chatStore.js'
+  import { atot } from '../stores/userStore.js'
 
-  onMount(async () => {
+  let uname = get(atot)
+
+  onMount(() => {
     loadChat()
   })
-
-  let uname = get(userName)
 </script>
 
 <main>

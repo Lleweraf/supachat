@@ -1,15 +1,11 @@
-import { writable, readable, get } from 'svelte/store'
 import { supabase } from '../supabase.js'
+import { writable, get } from 'svelte/store'
 export const chat = writable([])
-export const userName = readable(null, (set) => {
-  set(localStorage.getItem('supachatUsername'))
-})
 
 let isAdded = false
 let initChatCount = 50
 
 export const loadChat = async () => {
-  //loads 50 most recent chat
   const { data, error } = await supabase
     .from('global_chat')
     .select()
@@ -17,11 +13,9 @@ export const loadChat = async () => {
     .limit(initChatCount)
   chat.set(data)
 
-  //subscribe for changes
   const mySubscription = supabase
     .from('global_chat')
     .on('*', (payload) => {
-      console.log('Change received!', payload)
       chat.set([...data, payload.new])
       loadChat()
     })
@@ -29,7 +23,6 @@ export const loadChat = async () => {
 }
 
 export const loadMore = async () => {
-  //console.log((initChatCount += 1))
   const { data, error } = await supabase
     .from('global_chat')
     .select()
@@ -40,11 +33,9 @@ export const loadMore = async () => {
 
 export const sendMessage = async (username, message) => {
   const { data, error } = await supabase.from('global_chat').insert([{ username, message }])
-
   if (error) {
     return console.error(error)
   }
-
   return (isAdded = true)
 }
 
@@ -52,16 +43,8 @@ export const sendMessage = async (username, message) => {
 export const addUserdata = (username, timestamp) => {
   let isOver24hrs = computeDate(loadUserdata().tempDate)
 
-  if (loadUserdata().tempUser == null) {
+  if (loadUserdata().tempUser == null || (loadUserdata().tempUser === username && isOver24hrs)) {
     setUserdata(username, timestamp)
-    console.log('Username added to localstorage')
-  }
-
-  if (loadUserdata().tempUser === username && isOver24hrs) {
-    setUserdata(username, timestamp)
-    console.log('Username added to localstorage')
-  } else {
-    console.log('Username already exists. You must wait 24 hrs. to change.')
   }
 }
 
@@ -73,11 +56,15 @@ export const setUserdata = async (username, timestamp) => {
 
 // Retrieve user data from localstorage
 export const loadUserdata = async () => {
-  let tempUser = localStorage.getItem('supachatUsername')
-  let tempDate = localStorage.getItem('supachatTimestamp')
+  if (typeof localStorage != undefined) {
+    let tempUser = localStorage.getItem('supachatUsername')
+    let tempDate = localStorage.getItem('supachatTimestamp')
 
-  computeDate(tempDate)
-  return { tempUser, tempDate }
+    computeDate(tempDate)
+    return { tempUser, tempDate }
+  } else {
+    localStorage.clear()
+  }
 }
 
 //Check time interval (24 Hrs)

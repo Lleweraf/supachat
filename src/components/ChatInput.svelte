@@ -1,8 +1,9 @@
 <script>
-  import { sendMessage, userName } from '../stores/chatStore.js'
+  import { sendMessage } from '../stores/chatStore.js'
+  import { atot } from '../stores/userStore.js'
   import { get } from 'svelte/store'
   let message
-  let uname = get(userName)
+  let uname = get(atot)
 
   const handleSubmit = async () => {
     let trimmed = message.trim()
@@ -39,6 +40,12 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .input-container {
+      border-radius: 0;
     }
   }
 </style>

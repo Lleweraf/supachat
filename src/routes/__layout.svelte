@@ -1,10 +1,10 @@
 <script>
   import '../app.scss'
   import '../reset.css'
-  import { userName } from '../stores/chatStore.js'
+  import { atot } from '../stores/userStore.js'
   import { get } from 'svelte/store'
 
-  let uname = get(userName)
+  let uname = get(atot)
 </script>
 
 {#if uname}
@@ -20,3 +20,9 @@
 {/if}
 
 <slot />
+
+{#if uname}
+  <footer>
+    <p>Source code</p>
+  </footer>
+{/if}

@@ -8,18 +8,25 @@ body {
   text-align: center;
 }
 
+#svelte {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 main {
   max-width: 600px;
   margin: auto;
 }
 
-header {
+header,
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #202020;
   padding: 10px 20px;
-  margin-bottom: 30px;
 }
 
 .user-info {
@@ -39,7 +46,8 @@ header {
   background-color: #272727;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  height: 525px;
+  // height: 525px;
+  height: 70vh;
 
   .chat-window {
     padding: 20px 20px 20px 30px;
@@ -99,5 +107,16 @@ header {
     color: #fff;
     background: #3ecf8e;
     border-radius: 30px 30px 5px 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  main {
+    margin: 0;
+    flex: 1;
+  }
+
+  .chat-container {
+    border-radius: 0;
   }
 }
