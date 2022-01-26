@@ -1,24 +1,22 @@
 <script>
-  import { sendMessage, loadUserdata } from '../stores/chatStore.js'
-  import { onMount } from 'svelte'
-
-  let userData = []
+  import { sendMessage, userName } from '../stores/chatStore.js'
+  import { get } from 'svelte/store'
   let message
+  let uname = get(userName)
 
-  onMount(async () => {
-    userData = await loadUserdata()
-  })
-
-  const handleSubmit = async (username) => {
-    const isSent = await sendMessage(username, message)
-    if (isSent) {
-      message = ''
+  const handleSubmit = async () => {
+    let trimmed = message.trim()
+    if (trimmed !== '' && trimmed != null) {
+      const isSent = await sendMessage(uname, trimmed)
+      if (isSent) {
+        message = ''
+      }
     }
   }
 </script>
 
 <div class="input-container">
-  <form on:submit|preventDefault={handleSubmit(userData.tempUser)}>
+  <form on:submit|preventDefault={handleSubmit}>
     <input type="text" placeholder="Say something.." bind:value={message} />
   </form>
 </div>

@@ -1,24 +1,20 @@
 <script>
   import '../app.scss'
   import '../reset.css'
-  import { onMount } from 'svelte'
-  import { loadChat } from '../stores/chatStore.js'
-  import { loadUserdata } from '../stores/chatStore.js'
-  let userData = []
+  import { userName } from '../stores/chatStore.js'
+  import { get } from 'svelte/store'
 
-  onMount(async () => {
-    userData = await loadUserdata()
-  })
+  let uname = get(userName)
 </script>
 
-{#if userData.tempUser}
+{#if uname}
   <header>
     <div class="logo">
       <h1>supachat</h1>
     </div>
 
     <div class="user-info">
-      Hello, <span>{userData.tempUser}</span>
+      Hello, <span>{uname}</span>
     </div>
   </header>
 {/if}

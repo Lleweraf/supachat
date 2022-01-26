@@ -44,20 +44,12 @@ header {
   .chat-window {
     padding: 20px 20px 20px 30px;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 
 .chat-box {
-  .user-profile-image {
-    width: 70px;
-    align-self: flex-end;
-    margin-bottom: 40px;
-
-    img {
-      border-radius: 100px;
-    }
-  }
-
   .message {
     display: flex;
     flex-flow: column;
@@ -84,10 +76,6 @@ header {
 .agent {
   display: flex;
 
-  .user-profile-image {
-    margin-right: 15px;
-  }
-
   .message {
     align-items: flex-start;
   }
@@ -103,10 +91,6 @@ header {
   display: flex;
   flex-direction: row-reverse;
 
-  .user-profile-image {
-    margin-left: 15px;
-  }
-
   .message {
     align-items: flex-end;
   }
@@ -115,25 +99,5 @@ header {
     color: #fff;
     background: #3ecf8e;
     border-radius: 30px 30px 5px 30px;
-  }
-}
-
-.add-username {
-  padding: 20px;
-  border-radius: 10px;
-  margin: auto;
-
-  input {
-    border: none;
-    padding: 20px 40px;
-    border-radius: 50px;
-    text-align: center;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-
-    &:focus {
-      outline: none;
-    }
   }
 }
