@@ -3,15 +3,15 @@ import { writable, get } from 'svelte/store'
 export const chat = writable([])
 
 let isAdded = false
-let initChatCount = 50
+let initChatCount = 25
 
 export const loadChat = async () => {
   const { data, error } = await supabase
     .from('global_chat')
     .select()
-    .order('id', { ascending: true })
+    .order('id', { ascending: false })
     .limit(initChatCount)
-  chat.set(data)
+  chat.set(data.reverse())
 
   const mySubscription = supabase
     .from('global_chat')
@@ -26,9 +26,9 @@ export const loadMore = async () => {
   const { data, error } = await supabase
     .from('global_chat')
     .select()
-    .order('id', { ascending: true })
+    .order('id', { ascending: false })
     .limit((initChatCount += 20))
-  chat.set(data)
+  chat.set(data.reverse())
 }
 
 export const sendMessage = async (username, message) => {
