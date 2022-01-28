@@ -36,7 +36,7 @@
   }
 </script>
 
-<div class="backdrop">
+<div class="backdrop" id="vanta">
   <div class="modal">
     <div class="add-username">
       <form on:submit|preventDefault={handleSubmit}>
@@ -54,7 +54,7 @@
         {/if}
 
         {#if !hasError && !isLoading && !hasWhiteSpace}
-          <small>You will use this username within <span>24 hrs.</span></small>
+          <small>Your username will expire after <span>24 hrs.</span></small>
         {/if}
       </form>
     </div>
@@ -85,9 +85,13 @@
       display: block;
       margin: auto;
       margin-bottom: 10px;
+      box-shadow: 0px 5px #3ecf8e;
+      transition: all ease 0.1s;
 
       &:focus {
         outline: none;
+        box-shadow: 0px 10px #3ecf8e;
+        margin-bottom: 20px;
       }
     }
 

@@ -15,7 +15,7 @@ export const loadChat = async () => {
 
   const mySubscription = supabase
     .from('global_chat')
-    .on('*', (payload) => {
+    .on('INSERT', (payload) => {
       chat.set([...data, payload.new])
       loadChat()
     })

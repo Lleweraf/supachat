@@ -3,7 +3,6 @@
   import ChatInput from '../components/ChatInput.svelte'
   import Modal from '../components/Modal.svelte'
 
-  //import { onMount } from 'svelte'
   import { get } from 'svelte/store'
   import { loadChat } from '../stores/chatStore.js'
   import { atot } from '../stores/userStore.js'
@@ -12,11 +11,11 @@
   if (uname) {
     loadChat()
   }
-
-  // onMount(() => {
-  //   loadChat()
-  // })
 </script>
+
+<svelte:head>
+  <title>Supachat</title>
+</svelte:head>
 
 <main>
   {#if uname}

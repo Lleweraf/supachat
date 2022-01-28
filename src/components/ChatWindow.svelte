@@ -4,6 +4,8 @@
   import { atot } from '../stores/userStore.js'
   import Time from 'svelte-time'
   import { get } from 'svelte/store'
+  import { fly } from 'svelte/transition'
+  import { quintInOut } from 'svelte/easing'
 
   let div
   let autoscroll
@@ -18,11 +20,9 @@
   })
 
   const backRead = async (e) => {
-    //console.log(e)
     let clientHeight = e.srcElement.clientHeight
     let diff = e.srcElement.scrollHeight + e.srcElement.scrollTop
     if (diff == clientHeight) {
-      console.log('Load more data')
       loadMore()
     }
   }
@@ -33,7 +33,7 @@
     {#each $chat as { id, created_at, username, message }}
       <div class="chat-box" class:sender={username === uname} class:agent={username !== uname}>
         <div class="message">
-          <div class="message-box" {id}>
+          <div class="message-box" {id} transition:fly={{ easing: quintInOut, y: 20, duration: 500 }}>
             <span>{message}</span>
           </div>
           <div class="info">
