@@ -20,9 +20,8 @@
   })
 
   const backRead = async (e) => {
-    let clientHeight = e.srcElement.clientHeight
-    let diff = e.srcElement.scrollHeight + e.srcElement.scrollTop
-    if (diff == clientHeight) {
+    let clientHeight = e.srcElement.scrollTop
+    if (clientHeight == 0) {
       loadMore()
     }
   }
@@ -30,12 +29,14 @@
 
 <div class="chat-container">
   <div class="chat-window" bind:this={div} on:scroll={backRead}>
-    {#each $chat as { id, created_at, username, message }}
+    {#each $chat as { id, created_at, username, message }, key}
       <div class="chat-box" class:sender={username === uname} class:agent={username !== uname}>
         <div class="message">
-          <div class="message-box" {id} transition:fly={{ easing: quintInOut, y: 20, duration: 500 }}>
-            <span>{message}</span>
-          </div>
+          {#key key}
+            <div class="message-box" {id} transition:fly={{ easing: quintInOut, y: 20, duration: 500, delay: 0.3 }}>
+              <span>{message}</span>
+            </div>
+          {/key}
           <div class="info">
             <small>
               <!-- if not sender, show username -->

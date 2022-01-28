@@ -9,7 +9,7 @@ export const loadChat = async () => {
   const { data, error } = await supabase
     .from('global_chat')
     .select()
-    .order('id', { ascending: false })
+    .order('id', { ascending: true })
     .limit(initChatCount)
   chat.set(data)
 
@@ -26,7 +26,7 @@ export const loadMore = async () => {
   const { data, error } = await supabase
     .from('global_chat')
     .select()
-    .order('id', { ascending: false })
+    .order('id', { ascending: true })
     .limit((initChatCount += 20))
   chat.set(data)
 }
