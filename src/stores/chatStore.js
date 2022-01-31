@@ -31,12 +31,25 @@ export const loadMore = async () => {
   chat.set(data.reverse())
 }
 
-export const sendMessage = async (username, message) => {
-  const { data, error } = await supabase.from('global_chat').insert([{ username, message }])
+export const sendMessage = async (username, message, replied_to_id, replied_to_message, replied_to_username) => {
+  //console.log('chat store: ', username, message, replied_to_id, replied_to_message, replied_to_username)
+  //return
+  const { data, error } = await supabase
+    .from('global_chat')
+    .insert([{ username, message, replied_to_id, replied_to_message, replied_to_username }])
   if (error) {
     return console.error(error)
   }
   return (isAdded = true)
+}
+
+export const replyData = async (id) => {
+  const { data, error } = await supabase.from('global_chat').select().eq('id', id)
+  if (error) {
+    return console.error(error)
+  }
+  console.log('chatstore (replydata):', data)
+  return data
 }
 
 // Add username and timestamp when it was created.

@@ -7,6 +7,12 @@
   import { loadChat } from '../stores/chatStore.js'
   import { atot } from '../stores/userStore.js'
 
+  let replyUserData = []
+
+  $: {
+    console.log('Index', replyUserData)
+  }
+
   let uname = get(atot)
   if (uname) {
     loadChat()
@@ -19,8 +25,8 @@
 
 <main>
   {#if uname}
-    <ChatWindow />
-    <ChatInput />
+    <ChatWindow {replyUserData} on:reply={(e) => (replyUserData = e.detail.data)} />
+    <ChatInput {replyUserData} on:cancelReply={(e) => (replyUserData = e.detail.data)} />
   {:else}
     <Modal />
   {/if}

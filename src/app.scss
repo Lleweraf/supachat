@@ -98,15 +98,53 @@ footer {
 }
 
 .chat-box {
+  margin: 5px 0;
+
   .message {
     display: flex;
     flex-flow: column;
     width: 100%;
     text-align: justify;
 
+    &:hover {
+      .reply-btn {
+        display: block !important;
+      }
+    }
+
+    .reply-box {
+      padding: 10px 20px 20px;
+      background: #242424;
+      margin-bottom: -10px;
+      border-radius: 20px;
+      color: #6e6e6e;
+      font-weight: 100;
+      display: flex;
+      flex-direction: column;
+
+      span:first-child {
+        margin-bottom: 3px;
+        font-size: 13px;
+      }
+    }
+
     .message-box {
       padding: 10px 15px;
-      font-weight: 100;
+      font-weight: normal;
+      position: relative;
+
+      .reply-btn {
+        cursor: pointer;
+        position: absolute;
+        bottom: 7px;
+        right: -40px;
+        width: 30px;
+        background: #6c6c6c;
+        border-radius: 50px;
+        padding: 6px;
+        color: #fff;
+        display: none;
+      }
     }
 
     .info {
@@ -147,6 +185,10 @@ footer {
     color: #fff;
     background: #3ecf8e;
     border-radius: 30px 30px 5px 30px;
+
+    .reply-btn {
+      left: -40px;
+    }
   }
 }
 
