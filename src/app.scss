@@ -114,6 +114,7 @@ footer {
     flex-flow: column;
     width: 100%;
     text-align: justify;
+    overflow: hidden;
 
     &:hover {
       .reply-btn {
@@ -142,7 +143,6 @@ footer {
       padding: 10px 15px;
       font-weight: normal;
       position: relative;
-      overflow: hidden;
 
       .reply-btn {
         cursor: pointer;
