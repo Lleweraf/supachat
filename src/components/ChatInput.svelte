@@ -25,7 +25,7 @@
   const handleSubmit = async () => {
     isSending = true
     let trimmed = await message.trim()
-    const isSent = setTimeout(() => {
+    setTimeout(() => {
       if (trimmed !== '' && trimmed != null) {
         if (replyUserData.length !== 0) {
           replyId = replyUserData[0].id
@@ -38,17 +38,14 @@
         }
 
         sendMessage(uname, trimmed, replyId, theMessage, replyUser)
-
-        if (isSent) {
-          replyUserData = []
-          dispatch('cancelReply', {
-            data: replyUserData
-          })
-          message = ''
-          isSending = false
-        }
+        replyUserData = []
+        dispatch('cancelReply', {
+          data: replyUserData
+        })
+        message = ''
+        isSending = false
       }
-    }, 1000)
+    }, 100)
   }
 
   const cancelReply = () => {
@@ -74,7 +71,14 @@
     </div>
   {/if}
   <form on:submit|preventDefault={handleSubmit}>
-    <input type="text" placeholder="Say something.." bind:value={message} bind:this={input} disabled={isSending} />
+    <input
+      type="text"
+      placeholder="Say something.."
+      bind:value={message}
+      bind:this={input}
+      disabled={isSending}
+      maxlength="50"
+    />
     {#if isSending}
       <Spinner />
     {/if}

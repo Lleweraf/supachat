@@ -10,9 +10,6 @@ body {
   color: #fff;
   font-family: Nunito;
   text-align: center;
-}
-
-#svelte {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -126,6 +123,7 @@ footer {
       font-weight: 100;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
 
       span:first-child {
         margin-bottom: 3px;
@@ -137,6 +135,7 @@ footer {
       padding: 10px 15px;
       font-weight: normal;
       position: relative;
+      overflow: hidden;
 
       .reply-btn {
         cursor: pointer;

@@ -4,17 +4,14 @@ export const chat = writable([])
 
 let isAdded = false
 let initChatCount = 25
+let tableName = 'global_chat'
 
 export const loadChat = async () => {
-  const { data, error } = await supabase
-    .from('global_chat')
-    .select()
-    .order('id', { ascending: false })
-    .limit(initChatCount)
+  const { data, error } = await supabase.from(tableName).select().order('id', { ascending: false }).limit(initChatCount)
   chat.set(data.reverse())
 
   const mySubscription = supabase
-    .from('global_chat')
+    .from(tableName)
     .on('INSERT', (payload) => {
       chat.set([...data, payload.new])
       loadChat()
@@ -24,7 +21,7 @@ export const loadChat = async () => {
 
 export const loadMore = async () => {
   const { data, error } = await supabase
-    .from('global_chat')
+    .from(tableName)
     .select()
     .order('id', { ascending: false })
     .limit((initChatCount += 5))
@@ -32,19 +29,14 @@ export const loadMore = async () => {
 }
 
 export const sendMessage = async (username, message, replied_to_id, replied_to_message, replied_to_username) => {
-  //console.log('chat store: ', username, message, replied_to_id, replied_to_message, replied_to_username)
-  //return
   const { data, error } = await supabase
-    .from('global_chat')
+    .from(tableName)
     .insert([{ username, message, replied_to_id, replied_to_message, replied_to_username }])
-  if (error) {
-    return console.error(error)
-  }
-  return (isAdded = true)
+  loadChat()
 }
 
 export const replyData = async (id) => {
-  const { data, error } = await supabase.from('global_chat').select().eq('id', id)
+  const { data, error } = await supabase.from(tableName).select().eq('id', id)
   if (error) {
     return console.error(error)
   }
