@@ -16,6 +16,13 @@ body {
   justify-content: space-between;
 }
 
+#svelte {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 main {
   width: 600px;
   margin: auto;
