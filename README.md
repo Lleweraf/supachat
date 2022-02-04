@@ -1,38 +1,37 @@
-# create-svelte
+# ⚡Supachat
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+A real-time chat app using **[Svelte](https://svelte.dev/)** and **[Supabase](https://supabase.com/)**
 
-## Creating a project
+## Installation
 
-If you're seeing this, you've probably already done this step. Congrats!
+`npm install` to initialize all dependencies
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Supabase setup
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+Create a `.env` file with variables `VITE_PUBLIC_SUPABASE_URL` and `VITE_PUBLIC_SUPABASE_ANON_KEY` (These can be located in your Supabase project under **Settings** > **API**)
 
-> Note: the `@next` is temporary
+## Supabase project
 
-## Developing
+Tables are pretty much simple and direct to the point (just to avoid using inner joins and all)
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+**For the Global chat table**
+| Field | Type |
+| -- | -- |
+| id (primary) | int8 |
+| username | varchar |
+|created_at|timestampz (default value is: **now()**|
+|message|text|
+|replied_to_id|int2|
+|replied_to_user|varchar|
+|replied_to_message|text|
 
-```bash
-npm run dev
+**For the users table**
+| Field | Type |
+| -- | -- |
+| id (primary) | int8 |
+|created_at|timestampz (default value is: **now()**|
+|username|varchar|
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Developing and building
 
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+Start development server `npm run dev` and `npm run build`
