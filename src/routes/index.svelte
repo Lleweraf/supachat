@@ -10,7 +10,7 @@
   let replyUserData = []
 
   $: {
-    console.log('Index', replyUserData)
+    //console.log('Index', replyUserData)
   }
 
   let uname = get(atot)

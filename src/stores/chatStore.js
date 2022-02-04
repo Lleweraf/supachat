@@ -27,7 +27,7 @@ export const loadMore = async () => {
     .from('global_chat')
     .select()
     .order('id', { ascending: false })
-    .limit((initChatCount += 20))
+    .limit((initChatCount += 5))
   chat.set(data.reverse())
 }
 

@@ -7,6 +7,7 @@
   import { get } from 'svelte/store'
   import Icon from '@krowten/svelte-heroicons/Icon.svelte'
 
+  let isLoading = false
   let div
   let autoscroll
   export let replyUserData = []
@@ -14,7 +15,7 @@
   let uname = get(atot)
 
   $: {
-    console.log('Chatwindow', replyUserData)
+    //console.log('Chatwindow', replyUserData)
   }
 
   beforeUpdate(() => {
@@ -28,7 +29,11 @@
   const backRead = async (e) => {
     let clientHeight = e.srcElement.scrollTop
     if (clientHeight == 0) {
-      loadMore()
+      isLoading = true
+      setTimeout(() => {
+        loadMore()
+        isLoading = false
+      }, 1500)
     }
   }
 
@@ -41,8 +46,8 @@
   }
 </script>
 
-<div class="chat-container">
-  <div class="chat-window" bind:this={div} on:scroll={backRead}>
+<div class="chat-container" class:chat-loading={isLoading}>
+  <div class="chat-window" bind:this={div} on:scroll={backRead} class:disable-scroll={isLoading}>
     {#each $chat as { id, created_at, username, message, replied_to_id, replied_to_message, replied_to_username }, key}
       <div class="chat-box" class:sender={username === uname} class:agent={username !== uname}>
         <div class="message">
@@ -77,3 +82,26 @@
     {/each}
   </div>
 </div>
+
+<style>
+  .chat-loading {
+    position: relative;
+  }
+
+  .chat-loading::before {
+    position: absolute;
+    content: 'loading..';
+    background: #0000005c;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: grid;
+    place-content: center;
+    font-size: 40px;
+  }
+
+  .disable-scroll {
+    overflow: hidden;
+    filter: blur(4px);
+  }
+</style>

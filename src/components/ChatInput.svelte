@@ -3,6 +3,8 @@
   import { atot } from '../stores/userStore.js'
   import { get } from 'svelte/store'
   import { createEventDispatcher } from 'svelte'
+  import Spinner from '../components/Spinner.svelte'
+
   let message
   let uname = get(atot)
   export let replyUserData = []
@@ -11,37 +13,42 @@
   let theMessage
   let replyUser
   let input
+  let isSending = false
 
   $: {
-    console.log('Chatinput', replyUserData)
+    //console.log('Chatinput', replyUserData)
     if (replyUserData.length > 0) {
       input.focus()
     }
   }
 
   const handleSubmit = async () => {
+    isSending = true
     let trimmed = await message.trim()
-    if (trimmed !== '' && trimmed != null) {
-      if (replyUserData.length !== 0) {
-        replyId = replyUserData[0].id
-        theMessage = replyUserData[0].message
-        replyUser = replyUserData[0].username
-      } else {
-        replyId = undefined
-        theMessage = undefined
-        replyUser = undefined
-      }
+    const isSent = setTimeout(() => {
+      if (trimmed !== '' && trimmed != null) {
+        if (replyUserData.length !== 0) {
+          replyId = replyUserData[0].id
+          theMessage = replyUserData[0].message
+          replyUser = replyUserData[0].username
+        } else {
+          replyId = undefined
+          theMessage = undefined
+          replyUser = undefined
+        }
 
-      const isSent = await sendMessage(uname, trimmed, replyId, theMessage, replyUser)
+        sendMessage(uname, trimmed, replyId, theMessage, replyUser)
 
-      if (isSent) {
-        replyUserData = []
-        dispatch('cancelReply', {
-          data: replyUserData
-        })
-        message = ''
+        if (isSent) {
+          replyUserData = []
+          dispatch('cancelReply', {
+            data: replyUserData
+          })
+          message = ''
+          isSending = false
+        }
       }
-    }
+    }, 1000)
   }
 
   const cancelReply = () => {
@@ -67,11 +74,18 @@
     </div>
   {/if}
   <form on:submit|preventDefault={handleSubmit}>
-    <input type="text" placeholder="Say something.." bind:value={message} bind:this={input} />
+    <input type="text" placeholder="Say something.." bind:value={message} bind:this={input} disabled={isSending} />
+    {#if isSending}
+      <Spinner />
+    {/if}
   </form>
 </div>
 
 <style lang="scss">
+  form {
+    position: relative;
+  }
+
   .input-container {
     background: #fff;
     border-radius: 0 0 5px 5px;
@@ -132,6 +146,10 @@
 
     &:focus {
       outline: none;
+    }
+
+    &:disabled {
+      background: #dedede;
     }
   }
 
