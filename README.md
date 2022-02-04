@@ -22,7 +22,7 @@ Tables are pretty much simple and direct to the point (just to avoid using inner
 |created_at|timestampz (default value is: **now()**|
 |message|text|
 |replied_to_id|int2|
-|replied_to_user|varchar|
+|replied_to_username|varchar|
 |replied_to_message|text|
 
 **For the users table**
