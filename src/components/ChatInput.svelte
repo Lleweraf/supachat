@@ -25,27 +25,25 @@
   const handleSubmit = async () => {
     isSending = true
     let trimmed = await message.trim()
-    setTimeout(() => {
-      if (trimmed !== '' && trimmed != null) {
-        if (replyUserData.length !== 0) {
-          replyId = replyUserData[0].id
-          theMessage = replyUserData[0].message
-          replyUser = replyUserData[0].username
-        } else {
-          replyId = undefined
-          theMessage = undefined
-          replyUser = undefined
-        }
-
-        sendMessage(uname, trimmed, replyId, theMessage, replyUser)
-        replyUserData = []
-        dispatch('cancelReply', {
-          data: replyUserData
-        })
-        message = ''
-        isSending = false
+    if (trimmed !== '' && trimmed != null) {
+      if (replyUserData.length !== 0) {
+        replyId = replyUserData[0].id
+        theMessage = replyUserData[0].message
+        replyUser = replyUserData[0].username
+      } else {
+        replyId = undefined
+        theMessage = undefined
+        replyUser = undefined
       }
-    }, 100)
+
+      await sendMessage(uname, trimmed, replyId, theMessage, replyUser)
+      replyUserData = []
+      dispatch('cancelReply', {
+        data: replyUserData
+      })
+      message = ''
+      isSending = false
+    }
   }
 
   const cancelReply = () => {

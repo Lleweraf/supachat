@@ -30,10 +30,9 @@
     let clientHeight = e.srcElement.scrollTop
     if (clientHeight == 0) {
       isLoading = true
-      setTimeout(() => {
-        loadMore()
-        isLoading = false
-      }, 1500)
+      await loadMore()
+      isLoading = false
+      div.scrollTo(0, clientHeight + 700)
     }
   }
 
