@@ -75,7 +75,7 @@
       bind:value={message}
       bind:this={input}
       disabled={isSending}
-      maxlength="50"
+      maxlength="200"
     />
     {#if isSending}
       <Spinner />
