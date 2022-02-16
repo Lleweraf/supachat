@@ -89,14 +89,14 @@
 
   .chat-loading::before {
     position: absolute;
-    content: 'loading..';
+    content: ' ';
     background: #0000005c;
     width: 100%;
     height: 100%;
     z-index: 999;
-    display: grid;
+    /* display: grid;
     place-content: center;
-    font-size: 40px;
+    font-size: 40px; */
   }
 
   .disable-scroll {
