@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.28",
     "@sveltejs/kit": "next",
     "sass": "^1.46.0",
     "svelte": "^3.44.0",
@@ -17,6 +18,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@capacitor/android": "^3.4.1",
+    "@capacitor/cli": "^3.4.1",
+    "@capacitor/core": "^3.4.1",
     "@krowten/svelte-heroicons": "0.0.3",
     "@supabase/supabase-js": "^1.29.4",
     "vercel": "^23.1.2"
